@@ -5,6 +5,7 @@ import Dashboard from "./Components/dashboard/dashboard";
 import ProjectSummary from "./Components/projects/ProjectSummary";
 import SignIn from "./Components/auth/SignIn";
 import SignUp from "./Components/auth/SignUp";
+import CreateProject from "./Components/projects/CreateProject";
 class App extends React.Component {
   render() {
     return (
@@ -16,6 +17,7 @@ class App extends React.Component {
             <Route path="/project/:id" component={ProjectSummary}></Route>
             <Route path="/signin" component={SignIn}></Route>
             <Route path="/signup" component={SignUp}></Route>
+            <Route path="/create" component={CreateProject}></Route>
           </Switch>
         </div>
       </BrowserRouter>
