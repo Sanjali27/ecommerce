@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { createProject } from "../../Store/Actions/projectActions";
 
 class CreateProject extends Component {
   state = {
@@ -12,30 +14,28 @@ class CreateProject extends Component {
   };
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state);
+    // console.log(this.state);
+    this.props.createProject(this.state);
   };
   render() {
     return (
       <div className="container">
         <form className="white" onSubmit={this.handleSubmit}>
-          <h5 className="grey-text text-darken-3">Create Project</h5>
+          <h5 className="grey-text text-darken-3">Create a New Project</h5>
           <div className="input-field">
-            <label htmlFor="email">Title</label>
             <input type="text" id="title" onChange={this.handleChange} />
+            <label htmlFor="title">Project Title</label>
           </div>
           <div className="input-field">
-            <label htmlFor="text">Content</label>
             <textarea
               id="content"
               className="materialize-textarea"
               onChange={this.handleChange}
             ></textarea>
+            <label htmlFor="content">Project Content</label>
           </div>
-
           <div className="input-field">
-            <button className="btn pink lighten-1 z-depth-0">
-              Create New Project
-            </button>
+            <button className="btn pink lighten-1">Create</button>
           </div>
         </form>
       </div>
@@ -43,4 +43,13 @@ class CreateProject extends Component {
   }
 }
 
-export default CreateProject;
+const mapDispatchToProps = dispatch => {
+  return {
+    createProject: project => dispatch(createProject(project))
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(CreateProject);
